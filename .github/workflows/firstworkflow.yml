@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       - name: Display runner info
-        run: 
+        run: |
           echo "Runner OS: $RUNNER.os"
           echo "Runner architecture: $RUNNER.arch"
           echo "Runner name: $RUNNER.name"  
