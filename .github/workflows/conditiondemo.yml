@@ -1,11 +1,17 @@
 name: Condition Demo
 
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Provide the environment name (e.g., Development, Test, Production)'
+        required: true
+        default: 'Development'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main'
+    if: github.event.inputs.environment == 'Production'
 
     steps:
       - name: Step 1
