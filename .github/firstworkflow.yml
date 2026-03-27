@@ -7,18 +7,39 @@ on:
 
 jobs:
   build:
+    name: Bild job
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v4
-      
-      - name: Set up Java
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      
-      - name: Build with Maven
-        run: mvn clean package
-      
-      - name: Run tests
-        run: mvn test
+
+      - name: Display runner info
+        run: 
+          echo "Runner OS: $RUNNER.os"
+          echo "Runner architecture: $RUNNER.arch"
+          echo "Runner name: $RUNNER.name"  
+          echo "Workspace : $GITHUB_WORKSPACE"
+          echo "Repository : $GITHUB_REPOSITORY"  
+          echo "Event name : $GITHUB_EVENT_NAME"
+          echo "Workflow : $GITHUB_WORKFLOW" 
+          echo "Action : $GITHUB_ACTION"
+          echo "Actor : $GITHUB_ACTOR"  
+          echo "Event path : $GITHUB_EVENT_PATH"
+          echo "SHA : $GITHUB_SHA"
+          echo "Ref : $GITHUB_REF"
+          echo "Workflow ref : $GITHUB_WORKFLOW_REF"
+          echo "Workflow run ID : $GITHUB_RUN_ID"
+          echo "Workflow run number : $GITHUB_RUN_NUMBER"
+          echo "Job : $GITHUB_JOB"  
+          echo "Run attempt : $GITHUB_RUN_ATTEMPT"
+          echo "Run ID : $GITHUB_RUN_ID"  
+          echo "Run number : $GITHUB_RUN_NUMBER"
+          echo "Repository owner : $GITHUB_REPOSITORY_OWNER"  
+          echo "Repository name : $GITHUB_REPOSITORY_NAME"
+          echo "Repository ref : $GITHUB_REF" 
+          echo "Repository SHA : $GITHUB_SHA"
+          echo "Repository event name : $GITHUB_EVENT_NAME"
+          echo "Repository event path : $GITHUB_EVENT_PATH"
+          echo "Repository workflow : $GITHUB_WORKFLOW"
+
+
