@@ -1,0 +1,27 @@
+name: Smart Build Pipeline
+
+on:
+  workflow_dispatch:
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      app: ${{ steps.detect.outputs.app }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Detect application type
+        id: detect
+        run: |
+          if [ -f "pom.xml" ] || [ -f "build.gradle" ]; then
+            echo "Detected Java project"
+            echo "app=java" >> $GITHUB_OUTPUT
+          elif ls *.csproj 1> /dev/null 2>&1; then
+            echo "Detected .NET project"
+            echo "app=dotnet" >> $GITHUB_OUTPUT
+          else
+            echo "Unknown project type"
+            echo "app=unknown" >> $GITHUB_OUTPUT
+          fi
