@@ -9,10 +9,8 @@ jobs:
     steps:
       - name: Use environment variables
         env:
-          Print_API_URL: $API_URL
+          API_URL: ${{ vars.API_URL }}
           API_KEY: ${{ secrets.API_KEY }}
-        run: |
-          # Outputs the API URL environment variable to the workflow logs
-          # This step echoes the API_URL for debugging and verification purposes
+        run: |          
           echo "API URL: $API_URL"
           echo "API Key: $API_KEY"
