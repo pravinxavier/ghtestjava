@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Use environment variables
         env:
-          API_URL: ${{ vars.API_URL }}
-          API_KEY: ${{ secrets.API_KEY }}
+          Print_API_URL: ${{ vars.API_URL }}
+          Print_API_KEY: ${{ secrets.API_KEY }}
         run: |          
-          echo "API URL: $API_URL"
-          echo "API Key: $API_KEY"
+          echo "API URL: $Print_API_URL"
+          echo "API Key: $Print_API_KEY"
