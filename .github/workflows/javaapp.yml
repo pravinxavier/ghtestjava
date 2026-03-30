@@ -7,7 +7,10 @@ jobs:
   build:
     name: Build job
     runs-on:
-      - ubuntu-latest
+      - self-hosted
+
+    permissions:
+      checks: write
       
     steps:
       - name: checkout code
