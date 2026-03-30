@@ -136,9 +136,10 @@ jobs:
           echo "=========================================="
           echo "  Gitleaks  : ${{ needs.gitleaks.result }}"
           echo "  SCA/OWASP : ${{ needs.sca.result }}"
+          echo "  CodeQL    : ${{ needs.codeql.result }}"
           echo "=========================================="
 
-          if [[ "${{ needs.gitleaks.result }}" != "success" || "${{ needs.sca.result }}" != "success" ]]; then
+          if [[ "${{ needs.gitleaks.result }}" != "success" || "${{ needs.sca.result }}" != "success" || "${{needs.codeql.result}}" != "success"]]; then
             echo ""
             echo "  ONE OR MORE SCANS FAILED"
             echo "  Pipeline blocked. Fix issues and re-run."
