@@ -15,6 +15,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+          cache: 'maven'
       - name: build with MVN
         run: mvn clean install
       - name: run tests with MVN
