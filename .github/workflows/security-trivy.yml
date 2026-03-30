@@ -105,12 +105,28 @@ jobs:
           echo "  trivy-sca-report artifact for details."
           echo "=========================================="
           exit 1
+  codeql:
+    name: CodeQL Analysis
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: 'codeql-analysis'
 
   # ---- Job 3: Summary Gate ----
   security-gate:
     name: Security Quality Gate
     runs-on: ubuntu-latest
-    needs: [gitleaks, sca]
+    needs: [gitleaks, sca, codeql]
     if: always()
     steps:
       - name: Check all scan results
