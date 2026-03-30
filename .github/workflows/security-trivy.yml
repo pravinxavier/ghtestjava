@@ -106,7 +106,7 @@ jobs:
           echo "=========================================="
           exit 1
   codeql:
-    name: CodeQL Analysis
+    name: SAST - CodeQL Analysis
     runs-on: ubuntu-latest
     permissions:
       security-events: write
@@ -115,12 +115,37 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
+        with:
+          languages: java-kotlin
+          queries: security-and-quality
+
+      - name: Build for CodeQL
+        run: mvn clean package -DskipTests -B
+
       - name: Perform CodeQL Analysis
+        id: codeql
         uses: github/codeql-action/analyze@v3
         with:
-          category: 'codeql-analysis'
+          category: codeql-java
+        continue-on-error: true
+
+      - name: Quality Gate - SAST
+        if: steps.codeql.outcome == 'failure'
+        run: |
+          echo "=========================================="
+          echo "  QUALITY GATE FAILED - CODE ISSUES FOUND"
+          echo "  Check Security tab > Code scanning"
+          echo "=========================================="
+          exit 1
 
   # ---- Job 3: Summary Gate ----
   security-gate:
