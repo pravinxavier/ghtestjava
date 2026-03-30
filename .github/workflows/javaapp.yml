@@ -24,11 +24,11 @@ jobs:
         run: mvn test
 
       - name: Junit test report
-        uses: drony/test-reporter@v3
+        uses: dorny/test-reporter@v1
         if: always()
         with:
           name: JUnit Test Report
-          files: target/surefire-reports/TEST-*.xml
+          path: target/surefire-reports/TEST-*.xml
           reporter: junit
 
       
