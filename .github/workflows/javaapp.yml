@@ -7,7 +7,7 @@ jobs:
   build:
     name: Build job
     runs-on:
-      - self-hosted
+      - ubuntu-latest
 
     permissions:
       checks: write
@@ -21,13 +21,15 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
           cache: 'maven'
+          
       - name: build with MVN
         run: mvn clean install
+
       - name: run tests with MVN
         run: mvn test
 
       - name: Junit test report
-        uses: dorny/test-reporter@v1
+        uses: dorny/test-reporter@v3
         if: always()
         with:
           name: JUnit Test Report
