@@ -20,6 +20,12 @@ jobs:
         run: mvn clean install
       - name: run tests with MVN
         run: mvn test
+      
+      - name: upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-demo-artifacts
+          path: target/*.jar
 
 
 
