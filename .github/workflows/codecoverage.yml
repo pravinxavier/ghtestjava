@@ -4,9 +4,22 @@ on:
   workflow_dispatch:
 
 jobs:
+  prepare:
+    name: Prepare Environment
+    runs-on: [self-hosted, pravinLinux]
+
+    steps:
+      - name: Install dependencies
+        run: |
+          sudo apt-get update && sudo apt-get install -y maven openjdk-17-jdk python3-pip
+          java -version
+          mvn -version
+          sudo ./svc.sh stop
+          sudo ./svc.sh start
+
   build-and-coverage:
     name: Build, Test & Coverage
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, pravinLinux]
 
     steps:
       # ── Checkout ──────────────────────────────────
