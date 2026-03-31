@@ -20,6 +20,7 @@ jobs:
   build-and-coverage:
     name: Build, Test & Coverage
     runs-on: [self-hosted, pravinLinux]
+    needs: prepare
 
     steps:
       # ── Checkout ──────────────────────────────────
