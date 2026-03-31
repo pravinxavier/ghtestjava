@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Install dependencies
         run: |
-          sudo apt-get update && sudo apt-get install -y maven openjdk-17-jdk python3-pip
+          sudo -S apt-get update && sudo -S apt-get install -y maven openjdk-17-jdk python3-pip
           java -version
           mvn -version
           sudo ./svc.sh stop
