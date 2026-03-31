@@ -39,5 +39,3 @@ jobs:
           echo "Repository event name : $GITHUB_EVENT_NAME"
           echo "Repository event path : $GITHUB_EVENT_PATH"
           echo "Repository workflow : $GITHUB_WORKFLOW"
-
-
