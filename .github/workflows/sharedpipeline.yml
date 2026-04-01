@@ -24,7 +24,7 @@ jobs:
   build:
     name: Build & Test
     needs: security
-    uses: GHPravinXavier/pravinsharedGHA/.github/workflows/java-build.yml@main
+    uses: GHPravinXavier/pravinsharedGHA/.github/workflows/build.yml@main
     with:
       java-version: '17'
       maven-goals: 'clean package -B'
